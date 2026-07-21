@@ -1,5 +1,5 @@
 # sa-province-digital-analysis/analysis.py
-# UPDATED WITH REAL EUROSTAT DATA (2025)
+# REAL EUROSTAT DATA (2025) - Digital Intensity in Enterprises
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -12,11 +12,12 @@ plt.rcParams['figure.figsize'] = (14, 8)
 # --- 1. REAL DATA FROM EUROSTAT (IMG-20260708-WA0038) ---
 data = {
     'Country': ['Austria', 'Bosnia', 'Belgium', 'Bulgaria', 'Cyprus', 'Czechia', 
-                'Germany', 'Denmark', 'EU Average', 'Estonia', 'Greece', 'Spain', 
+                'Germany', 'Denmark', 'EU Avg', 'Estonia', 'Greece', 'Spain', 
                 'Finland', 'France'],
     'Small_10_49': [5.5, 2.5, 9.5, 2.5, 6.5, 4.5, 5.5, 12.5, 6.5, 5.5, 2.5, 4.5, 14.5, 2.5],
     'Large_250_plus': [47.5, 15.5, 66.0, 15.5, 46.5, 39.0, 46.5, 70.5, 41.0, 42.0, 18.5, 44.0, 72.0, 30.0]
 }
+
 df = pd.DataFrame(data)
 
 # Sort by Large Enterprises for ranking
@@ -26,13 +27,14 @@ print("="*60)
 print("🇪🇺 REAL EUROSTAT DATA: Digital Intensity in Enterprises (2025)")
 print("="*60)
 print(df_sorted.to_string(index=False))
+print("\n")
 
 # --- 2. THE DIGITAL GAP CHART (Small vs Large) ---
 plt.figure(figsize=(14, 8))
 df_melted = df.melt(id_vars='Country', var_name='Enterprise Size', value_name='Digital Intensity (%)')
 
 sns.barplot(data=df_melted, x='Country', y='Digital Intensity (%)', hue='Enterprise Size', palette='rocket')
-plt.title('The Digital Gap in Europe: Small Enterprises vs Large Enterprises (2025)', fontsize=16, fontweight='bold')
+plt.title('The Digital Gap in Europe: Small vs Large Enterprises (2025)', fontsize=16, fontweight='bold')
 plt.ylabel('Enterprises with High Digital Intensity (%)')
 plt.xlabel('Country')
 plt.legend(title='Enterprise Size')
@@ -48,7 +50,7 @@ for p in plt.gca().patches:
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('europe_digital_gap.png', dpi=300, bbox_inches='tight')
-print("\n✅ Chart 1 (Europe Digital Gap) saved as 'europe_digital_gap.png'")
+print("✅ Chart 1 saved as 'europe_digital_gap.png'")
 
 # --- 3. THE RANKING CHART (Top to Bottom) ---
 plt.figure(figsize=(12, 6))
@@ -64,9 +66,9 @@ for index, row in df_sorted.iterrows():
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('europe_ranking.png', dpi=300, bbox_inches='tight')
-print("✅ Chart 2 (Europe Ranking) saved as 'europe_ranking.png'")
+print("✅ Chart 2 saved as 'europe_ranking.png'")
 
-# --- 4. INSIGHTS FOR SOUTH AFRICA (Connecting the dots) ---
+# --- 4. INSIGHTS FOR SOUTH AFRICA ---
 print("\n" + "="*60)
 print("🔍 WHAT THIS MEANS FOR SOUTH AFRICA")
 print("="*60)
@@ -75,4 +77,4 @@ print("2. Balkan countries (Bulgaria 15.5%, Bosnia 15.5%) lag severely.")
 print("3. This mirrors South Africa: Gauteng is like Finland, Limpopo is like Bulgaria.")
 print("4. FNB can use these European benchmarks to push SA SMEs toward digital transformation.")
 print("5. If SA SMEs match the EU average (41%), we could unlock billions in GDP growth.")
-print("\n💡 RECOMMENDATION: Launch a 'Digital SME Benchmark' tool comparing SA provinces to Europe.")
+print("\n💡 RECOMMENDATION: Launch a 'Digital SME Benchmark' tool for SA provinces.")
