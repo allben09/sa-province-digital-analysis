@@ -1,4 +1,4 @@
-Enter# 🇪🇺 European Digital Intensity Analysis (2025)
+# 🇪🇺 European Digital Intensity Analysis (2025)
 ## With Insights for South Africa 🇿🇦
 
 ### 🔍 Project Overview
